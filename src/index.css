@@ -29,3 +29,15 @@ button {
 button:hover {
   background-color: #0053a6;
 }
+
+.title{
+  text-align: center;
+}
+
+.main{
+  text-align: center;
+}
+
+.list{
+  
+}

@@ -27,10 +27,11 @@ const TodoList = () => {
 
     return(
         <div>
-            <h1>To-Do List</h1>
+            <h1 class="title">To-Do List</h1>
+            <section class="main">
             <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)}/>
             <button onClick={(handleAddTask)}>Add</button>
-            <ul>
+            <ul class="list">
                 {tasks.map((task, id) => (
                     <li key={id} style={{display: "flex"}}>
                         <div style = {{display: "flex", alignItems: "center"}}>
@@ -45,6 +46,7 @@ const TodoList = () => {
                     </li>
                 ))}
             </ul>
+            </section>
         </div>
     );
 };
