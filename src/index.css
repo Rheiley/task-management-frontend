@@ -39,5 +39,10 @@ button:hover {
 }
 
 .list{
-  
+  margin-left: 500px;
+  margin-top: 40px;
+}
+
+.elements{
+  padding-top: 10px;
 }
