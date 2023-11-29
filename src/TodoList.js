@@ -12,7 +12,6 @@ const TodoList = () => {
 
         axios.post(endpoint, newTaskObject)
             .then(response => {
-                const createdTask = response.data;
                 setTasks([...tasks, {
                     id: response.data.id,
                     taskName: response.data.taskName.trim(),
@@ -27,26 +26,30 @@ const TodoList = () => {
     }
   };
 
-  const handleDeleteTask = (id) => {
+  const handleDeleteTask = (index) => {
     const newTasks = [...tasks];
-    newTasks.splice(id, 1);
+    const taskId = tasks[index].id;
+    axios.delete(endpoint+"/"+taskId);
+    newTasks.splice(index, 1);
     setTasks(newTasks);
   };
 
-  const handleToggleTask = (id) => {
+  const handleToggleTask = (index) => {
     const newTasks = [...tasks];
-    newTasks[id].checked = !newTasks[id].checked;
+    newTasks[index].checked = !newTasks[index].checked;
     setTasks(newTasks);
   };
 
-  const handleDescriptionChange = (id, description) => {
+  const handleDescriptionChange = (index, description) => {
     const newTasks = [...tasks];
-    newTasks[id].description = description;
+    newTasks[index].description = description;
     setTasks(newTasks);
 
-    const updatedTask = newTasks[id];
+    const taskId = newTasks[index].id;
 
-    axios.put(endpoint+"/"+id, updatedTask);
+    const updatedTask = newTasks[index];
+
+    axios.put(endpoint+"/"+taskId, updatedTask);
   };
 
   return (
@@ -61,13 +64,13 @@ const TodoList = () => {
         />
         <button onClick={handleAddTask}>Add</button>
         <ul className="list">
-          {tasks.map((task, id) => (
-            <li key={id} style={{ display: "flex" }}>
+          {tasks.map((task, index) => (
+            <li key={index} style={{ display: "flex" }}>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <input
                   type="checkbox"
                   checked={task.checked}
-                  onChange={() => handleToggleTask(id)}
+                  onChange={() => handleToggleTask(index)}
                 />
                 <span
                   style={{
@@ -82,11 +85,11 @@ const TodoList = () => {
                   type="taskName"
                   placeholder="Description"
                   value={task.description}
-                  onChange={(e) => handleDescriptionChange(id, e.target.value)}
+                  onChange={(e) => handleDescriptionChange(index, e.target.value)}
                 />
                 <button
                   style={{ marginTop: "5px", marginBottom: "5px" }}
-                  onClick={() => handleDeleteTask(id)}
+                  onClick={() => handleDeleteTask(index)}
                 >
                   Delete
                 </button>
