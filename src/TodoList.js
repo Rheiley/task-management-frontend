@@ -4,11 +4,26 @@ import axios from "axios";
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const endpoint = "http://localhost:8080/api/tasks";
 
   const handleAddTask = () => {
-    if (newTask.trim() !== "") {
-      setTasks([...tasks, { text: newTask.trim(), description: "", checked: false }]);
-      setNewTask("");
+    if(newTask.trim() !== ""){
+        const newTaskObject = {taskName: newTask.trim(), description: "", completed: false};
+
+        axios.post(endpoint, newTaskObject)
+            .then(response => {
+                const createdTask = response.data;
+                setTasks([...tasks, {
+                    id: response.data.id,
+                    taskName: response.data.taskName.trim(),
+                    description: response.data.description.trim(),
+                    completed: response.data.completed
+                }]);
+                setNewTask("");
+            })
+            .catch(error => {
+                console.error("Error adding task: ", error);
+            });
     }
   };
 
@@ -28,6 +43,10 @@ const TodoList = () => {
     const newTasks = [...tasks];
     newTasks[id].description = description;
     setTasks(newTasks);
+
+    const updatedTask = newTasks[id];
+
+    axios.put(endpoint+"/"+id, updatedTask);
   };
 
   return (
@@ -35,7 +54,7 @@ const TodoList = () => {
       <h1 className="title">To-Do List</h1>
       <section className="main">
         <input
-          type="text"
+          type="taskName"
           placeholder="Task name"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
@@ -53,14 +72,14 @@ const TodoList = () => {
                 <span
                   style={{
                     marginRight: "10px",
-                    textDecoration: task.checked ? "line-through" : "none",
+                    taskNameDecoration: task.checked ? "line-through" : "none",
                   }}
                 >
-                  {task.text}
+                  {task.taskName}
                 </span>
                 <input
                   class="desc"  
-                  type="text"
+                  type="taskName"
                   placeholder="Description"
                   value={task.description}
                   onChange={(e) => handleDescriptionChange(id, e.target.value)}
