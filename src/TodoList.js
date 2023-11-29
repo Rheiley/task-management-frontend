@@ -20,16 +20,17 @@ const TodoList = () => {
                 }]);
                 setNewTask("");
             })
-            .catch(error => {
-                console.error("Error adding task: ", error);
-            });
+            .catch(alert("Error adding task"));
     }
   };
 
   const handleDeleteTask = (index) => {
     const newTasks = [...tasks];
     const taskId = tasks[index].id;
-    axios.delete(endpoint+"/"+taskId);
+    
+    axios.delete(endpoint+"/"+taskId)
+      .catch(alert("Error deleting task"));
+
     newTasks.splice(index, 1);
     setTasks(newTasks);
   };
