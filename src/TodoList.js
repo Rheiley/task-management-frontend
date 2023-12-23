@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import AuthDetails from "./components/AuthDetails";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
@@ -53,6 +54,7 @@ const TodoList = () => {
 
   return (
     <div>
+      <AuthDetails></AuthDetails>
       <h1 className="title">To-Do List</h1>
       <section className="main">
         <input
