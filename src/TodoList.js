@@ -20,7 +20,6 @@ const TodoList = () => {
                 }]);
                 setNewTask("");
             })
-            .catch(alert("Error adding task"));
     }
   };
 
@@ -29,7 +28,6 @@ const TodoList = () => {
     const taskId = tasks[index].id;
     
     axios.delete(endpoint+"/"+taskId)
-      .catch(alert("Error deleting task"));
 
     newTasks.splice(index, 1);
     setTasks(newTasks);
