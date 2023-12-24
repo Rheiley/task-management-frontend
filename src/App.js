@@ -1,15 +1,18 @@
 import './App.css';
-import TodoList from './TodoList';
-import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/SignUp';
-import AuthDetails from './components/AuthDetails';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from "./pages/Home";
+import TodoList from './pages/TodoList';
 
 function App() {
   return (
-    <div className="login">
-      <SignUp/>
-      <h1>Or</h1>
-      <SignIn/>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route index element = {<Home/>}/>
+          <Route path = "/home" element = {<Home/>}/>
+          <Route path = "/todolist" element = {<TodoList/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

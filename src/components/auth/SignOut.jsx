@@ -1,34 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { auth } from "../../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signOut} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-const SignIn = () => {
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
-    const signIn = (e) => {
-        e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password);
-    }
-    return(
-        <div className='sign-in-container'>
-            <form onSubmit={signIn}>
-                <h1>Log in</h1>
-                <input 
-                    type="email" 
-                    placeholder='Email' 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                ></input>
-                <input 
-                    type="email" 
-                    placeholder='Password' 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                ></input>
-                <button type="submit">Log in</button>
-            </form>
-        </div>
-    )
-};
-
-export default SignIn
+const SignOut = () => {
+    const navigate = useNavigate();
+    const handleSignOut = async () => {
+      try {
+        await signOut(auth);
+        navigate("/home");
+      } catch (error) {
+        console.error("Error signing out:", error.message);
+      }
+    };
+  
+    return (
+      <button onClick={handleSignOut}>
+        Sign Out
+      </button>
+    );
+  };
+  
+  export default SignOut;

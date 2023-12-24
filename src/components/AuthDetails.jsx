@@ -12,8 +12,12 @@ const AuthDetails = () => {
             }else{
                 setAuthUser(null);
             }
-        })
-    }, [])
+        });
+        return () => {
+            listen();
+        }
+    }, []);
+    
     return(
         <div>{ authUser ? <p>{`${authUser.email}`}</p> : <p>Signed out</p>}</div>
     );

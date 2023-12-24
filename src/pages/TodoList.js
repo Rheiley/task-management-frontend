@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import AuthDetails from "./components/AuthDetails";
+import AuthDetails from "../components/AuthDetails";
+import SignOut from "../components/auth/SignOut";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
@@ -54,7 +55,7 @@ const TodoList = () => {
 
   return (
     <div>
-      <AuthDetails></AuthDetails>
+      <AuthDetails/>
       <h1 className="title">To-Do List</h1>
       <section className="main">
         <input
@@ -99,6 +100,7 @@ const TodoList = () => {
           ))}
         </ul>
       </section>
+      <SignOut/>
     </div>
   );
 };
