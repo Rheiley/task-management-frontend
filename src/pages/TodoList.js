@@ -1,16 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AuthDetails from "../components/AuthDetails";
 import SignOut from "../components/auth/SignOut";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
   const endpoint = "http://localhost:8080/api/tasks";
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try{
+        const user = auth.currentUser;
+        if(user){
+          const response = await axios.get(`${endpoint}/${user.uid}/user-tasks`)
+          setTasks(response.data);
+        }
+      } catch(error){
+        alert("Error loading tasks");
+      }
+    };
+
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if(!user){
+        navigate("/home"); // if the user is not logged in, redirect to home page.
+      }else{
+        fetchTasks();
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
 
   const handleAddTask = () => {
+    const user = auth.currentUser;
+
     if(newTask.trim() !== ""){
-        const newTaskObject = {taskName: newTask.trim(), description: "", completed: false};
+        const newTaskObject = {
+          taskName: newTask.trim(), 
+          description: "", 
+          completed: false,
+          userUid: user.uid
+        };
 
         axios.post(endpoint, newTaskObject)
             .then(response => {
@@ -18,7 +52,8 @@ const TodoList = () => {
                     id: response.data.id,
                     taskName: response.data.taskName.trim(),
                     description: response.data.description.trim(),
-                    completed: response.data.completed
+                    completed: response.data.completed,
+                    userUid: response.data.userUid
                 }]);
                 setNewTask("");
             })
