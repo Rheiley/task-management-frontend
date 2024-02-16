@@ -5,7 +5,6 @@ export default function Home(){
     return(
         <div className="login">
         <SignUp/>
-        <h1>Or</h1>
         <SignIn/>
       </div>
     );

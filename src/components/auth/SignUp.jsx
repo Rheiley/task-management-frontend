@@ -27,7 +27,9 @@ const SignUp = () => {
                 ></input>
                 <button type="submit">Sign up</button>
             </form>
+            <h1>Or</h1>
         </div>
+        
     )
 };
 
