@@ -56,3 +56,15 @@ button:hover {
 .sign-up-container, .sign-in-container{
   text-align: center;
 }
+
+.sign-up-container{
+  padding-top: 12%;
+}
+
+.sign-out-button{
+  position: relative;
+}
+
+.auth-details{
+  text-align: center;
+}

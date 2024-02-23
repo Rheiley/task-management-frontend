@@ -19,7 +19,7 @@ const AuthDetails = () => {
     }, []);
     
     return(
-        <div>{ authUser ? <p>{`${authUser.email}`}</p> : <p>Signed out</p>}</div>
+        <div>{ authUser ? <p className= "auth-details">{`Signed in as ${authUser.email}`}</p> : <p>Signed out</p>}</div>
     );
 };
 
