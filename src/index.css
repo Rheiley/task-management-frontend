@@ -7,6 +7,33 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body.dark-mode {
+  background-color: #1d1c1c;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.dark-mode h1{
+  color: rgb(233, 223, 223);
+}
+
+body.dark-mode input{
+  background-color: grey;
+  border: 1px solid #8f8383;
+}
+
+body.dark-mode input::placeholder{
+  color: rgb(233, 223, 223);
+}
+
+body.dark-mode .auth-details{
+  color: rgb(233, 223, 223);
+}
+
 input {
   max-width: 200px;
   padding: 10px;
@@ -31,14 +58,6 @@ button:hover {
   background-color: #0053a6;
 }
 
-.title{
-  text-align: center;
-}
-
-.main{
-  text-align: center;
-}
-
 .list{
   margin-left: 500px;
   margin-top: 40px;
@@ -53,7 +72,7 @@ button:hover {
   height: 30%;
 }
 
-.sign-up-container, .sign-in-container{
+.title, .main, .sign-up-container, .sign-in-container, .auth-details{
   text-align: center;
 }
 
@@ -62,9 +81,7 @@ button:hover {
 }
 
 .sign-out-button{
-  position: relative;
-}
-
-.auth-details{
-  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
