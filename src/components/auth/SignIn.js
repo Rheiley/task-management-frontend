@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { auth } from "../../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import {GoogleButton} from "react-google-button";
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -17,8 +18,14 @@ const SignIn = () => {
         } catch(error){
             alert("Sign-in error: "+error.message);
         }
-
     }
+
+    const handleGoogleSignIn = async (e) => {
+        const provider = await new GoogleAuthProvider();
+        await signInWithPopup(auth, provider);
+        navigate("/todolist");
+    }
+
     return(
         <div className='sign-in-container'>
             <form onSubmit={signIn}>
@@ -37,6 +44,7 @@ const SignIn = () => {
                 ></input>
                 <button type="submit">Log in</button>
             </form>
+            <GoogleButton className="googleButton" onClick={handleGoogleSignIn}></GoogleButton>
         </div>
     )
 };
