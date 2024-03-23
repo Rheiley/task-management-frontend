@@ -81,7 +81,30 @@ button:hover {
 }
 
 .sign-out-button{
+  display: flex;
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.google-button{
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.light-mode-icon{
+  color: white;
+  cursor: pointer;
+}
+
+.dark-mode-icon{
+  cursor: pointer;
+}
+
+.toggle-theme{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  margin-left: 10px;
 }

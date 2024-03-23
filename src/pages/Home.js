@@ -4,8 +4,8 @@ import SignUp from "../components/auth/SignUp";
 export default function Home(){
     return(
         <div className="login">
-        <SignUp/>
-        <SignIn/>
-      </div>
+          <SignUp/>
+          <SignIn/>
+        </div>
     );
 }

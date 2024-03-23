@@ -44,7 +44,7 @@ const SignIn = () => {
                 ></input>
                 <button type="submit">Log in</button>
             </form>
-            <GoogleButton className="googleButton" onClick={handleGoogleSignIn}></GoogleButton>
+            <GoogleButton className = "google-button" onClick={handleGoogleSignIn}></GoogleButton>
         </div>
     )
 };
