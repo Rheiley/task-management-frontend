@@ -110,38 +110,37 @@ const TodoList = () => {
         />
         <button onClick={handleAddTask}>Add</button>
         <ul className="list">
-          {tasks.map((task, index) => (
-            <li key={index} style={{ display: "flex" }}>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <input
-                  type="checkbox"
-                  checked={task.checked}
-                  onChange={() => handleToggleTask(index)}
-                />
-                <span
-                  style={{
-                    marginRight: "10px",
-                    taskNameDecoration: task.checked ? "line-through" : "none",
-                  }}
-                >
-                  {task.taskName}
-                </span>
-                <input
-                  class="desc"  
-                  type="taskName"
-                  placeholder="Description"
-                  value={task.description}
-                  onChange={(e) => handleDescriptionChange(index, e.target.value)}
-                />
-                <button
-                  style={{ marginTop: "5px", marginBottom: "5px" }}
-                  onClick={() => handleDeleteTask(index)}
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
+        {tasks.map((task, index) => (
+        <li key={index} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+          <input
+            type="checkbox"
+            checked={task.checked}
+            onChange={() => handleToggleTask(index)}
+          />
+          <span
+            className="taskName"
+            style={{
+              marginRight: "10px",
+              textDecoration: task.checked ? "line-through" : "none",
+            }}
+          >
+            {task.taskName}
+          </span>
+          <input
+            className="desc"  
+            type="text"
+            placeholder="Description"
+            value={task.description}
+            onChange={(e) => handleDescriptionChange(index, e.target.value)}
+          />
+          <button
+            style={{ marginLeft: "10px", marginTop: "5px", marginBottom: "5px" }}
+            onClick={() => handleDeleteTask(index)}
+          >
+            Delete
+          </button>
+        </li>
+      ))}
         </ul>
       </section>
       <SignOut/>

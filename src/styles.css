@@ -22,8 +22,9 @@ body.dark-mode h1{
 }
 
 body.dark-mode input{
-  background-color: grey;
+  background-color: rgb(82, 82, 82);
   border: 1px solid #8f8383;
+  color: white;
 }
 
 body.dark-mode input::placeholder{
@@ -32,6 +33,10 @@ body.dark-mode input::placeholder{
 
 body.dark-mode .auth-details{
   color: rgb(233, 223, 223);
+}
+
+body.dark-mode .taskName{
+  color: white;
 }
 
 input {
