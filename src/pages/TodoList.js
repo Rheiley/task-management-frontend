@@ -109,7 +109,8 @@ const TodoList = () => {
           onChange={(e) => setNewTask(e.target.value)}
         />
         <button onClick={handleAddTask}>Add</button>
-        <ul className="list">
+
+        <ul className="list"> 
         {tasks.map((task, index) => (
         <li key={index} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
           <input
@@ -134,7 +135,8 @@ const TodoList = () => {
             onChange={(e) => handleDescriptionChange(index, e.target.value)}
           />
           <button
-            style={{ marginLeft: "10px", marginTop: "5px", marginBottom: "5px" }}
+            className="delete-button"
+            style={{ marginTop: "5px", marginBottom: "5px" }}
             onClick={() => handleDeleteTask(index)}
           >
             Delete

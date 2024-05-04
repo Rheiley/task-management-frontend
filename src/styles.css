@@ -64,8 +64,11 @@ button:hover {
 }
 
 .list{
-  margin-left: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-top: 40px;
+  margin-left: 685px;
 }
 
 .elements{
@@ -73,8 +76,8 @@ button:hover {
 }
 
 .desc{
-  width: 50%;
-  height: 30%;
+  width: 65%;
+  height: 20%;
 }
 
 .title, .main, .sign-up-container, .sign-in-container, .auth-details{
