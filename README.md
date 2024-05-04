@@ -5,7 +5,7 @@ This website is used for tracking & updating tasks. API repo can be found [here]
 - [Firebase](https://firebase.google.com/)
 - [React](https://react.dev/)
 - [Node.js](https://nodejs.org/en)
-- [MySQL](https://www.mysql.com/)
+- [Axios](https://axios-http.com/)
 
 ## Screenshots
 ![](src/screenshots/01.png)
